@@ -40,3 +40,23 @@
     flex-wrap: wrap;
     gap: 30px;
 }
+
+
+.Loss {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #808080;
+
+}
+
+.Loss h1 {
+    margin: 0;
+}
+
+.Loss .gif {
+    height: 200px;
+    width: 300px;
+}

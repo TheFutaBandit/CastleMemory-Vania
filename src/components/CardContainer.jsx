@@ -1,16 +1,17 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import "../styles/CardContainerStyles.css"
 
-function Card({CardName, CardUrlName = "trevor", shuffle, obj, lossCondition, increment, level}) {
+function Card({CardName, CardUrlName = "trevor", shuffle, obj, toggleLossCondition, increment, level}) {
     const imageSource = `src/assets/images/${CardUrlName}.png`;
 
     const checkFlag = () => {
         if(level === 3) {
-            toggleWinCondition();
+            toggleLossCondition();
             return false;
         }
         if(obj.flag === 1) {
-            lossCondition();
+            toggleLossCondition();
             return false;
         }
         return true;
@@ -24,11 +25,10 @@ function Card({CardName, CardUrlName = "trevor", shuffle, obj, lossCondition, in
         <div 
             className ="card" 
             onClick = {() => {
-                if(checkFlag()) {
+                checkFlag() 
                 increment();
                 toggleFlag();
-                shuffle();
-                }
+                shuffle(); 
             }}>
             <img src = {imageSource} alt= "Trevor Belmont" className = "card-image" />
             <div className = "card-overlay" ></div>
@@ -64,19 +64,46 @@ const cardList = [
     },
 ]
 
-function LossDiv({toggleRestart, winCondition}) {
+function LossDiv({ toggleRestart, winCondition }) {
+    const [imgSrc, setImgSrc] = useState(null);
+
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        async function fetchData() {
+            try {
+                const response = await fetch(
+                    `https://api.giphy.com/v1/gifs/translate?api_key=KqyyLHPW9jis442FabPsogFlhIgpUPxl&s=${winCondition ? "winner" : "loser"}`,
+                    { mode: "cors", signal }
+                );
+                const data_json = await response.json();
+                if (data_json.data && data_json.data.images) {
+                    setImgSrc(data_json.data.images.original.url);
+                }
+            } catch (error) {
+                if (error.name !== "AbortError") {
+                    console.error("Fetch error:", error);
+                }
+            }
+        }
+
+        fetchData();
+
+        return () => {
+            controller.abort();
+        };
+    }, [winCondition]);
+
     return (
-        (winCondition === false) 
-        ? <div className = "Loss">
-            <h1>You have lost. Click to restart!</h1>
-            <button onClick={() => toggleRestart()}>restart</button>
+        <div className="Loss">
+            <h1>{winCondition ? "You have won. Click to restart!" : "You have lost. Click to restart!"}</h1>
+            <img src={imgSrc} class ="gif" alt="GIF" />
+            <button onClick={toggleRestart}>Restart</button>
         </div>
-        : <div className = "Win">
-            <h1>You have won. Click to restart!</h1>
-            <button onClick={() => toggleRestart()}>restart</button>
-        </div>
-    )
+    );
 }
+
 
 
 export default function CardContainer({level, reset, increment}) {
@@ -124,11 +151,11 @@ export default function CardContainer({level, reset, increment}) {
                                             CardUrlName={item.cardUrlName}
                                             shuffle = {shuffleList} 
                                             obj = {item}
-                                            lossCondition = {toggleLossCondition}
+                                            toggleLossCondition = {toggleLossCondition}
                                             increment = {increment}
                                             level = {level}
                                         />})   
-                            : <LossDiv toggleRestart = {toggleRestartCondition} />}
+                            : <LossDiv toggleRestart = {toggleRestartCondition} winCondition={level >= 3}/>}
         </div>
     )
 }
