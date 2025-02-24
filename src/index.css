@@ -1,0 +1,128 @@
+@font-face {
+  font-family: "Garamond_Classic";
+  src: url(src/assets/fonts/Garamond_Classico.ttf);
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --instruction-panel-font: "Garamond_Classic", sans-serif;
+  --instruction-main-font-size: 32.9px;
+  --instruction-main-line-height: 39px;
+  --instruction-sub-font-size: 18.51px;
+  --instruction-sub-line-height: 22px;
+  --instruction-panel-font-color: #FFFFFF;
+
+
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* place-items: center; */
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #160D3D;
+  
+  /* mix-blend-mode: plus-lighter; */
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.instruction-panel {
+  width: 632.28px;
+  height: 154.42px;
+  font-family: var(--instruction-panel-font);
+  color: var(--instruction-panel-font-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-instruction {
+  font-size: var(--instruction-main-font-size);
+  line-height: var(--instruction-main-line-height);
+  text-align: center;
+}
+
+.sub-instruction {
+  font-size: var(--instruction-sub-font-size);
+  line-height: var(--instruction-sub-line-height);
+  text-align: center;
+}
+
+
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 30px 10px;
+}
+
+.GameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+

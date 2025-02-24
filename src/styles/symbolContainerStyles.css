@@ -1,0 +1,57 @@
+.footer-logos {
+    width: 576px;
+    height: 161.59px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.logo {
+    width: 127.51px;
+    height: 161.59px;
+}
+
+.vector {
+    background: #000000;
+}
+
+svg {
+    width: 82.44px;
+    height: 104.43px;
+}
+
+/* Specific Logo Sizes */
+.logo_1 {
+    
+}
+
+.logo_2 {
+    width: 82.44px;
+    height: 103.33px;
+}
+
+.logo_3 {
+    width: 127.51px;
+    height: 161.59px;
+}
+
+.logo_4 {
+    width: 82.44px;
+    height: 102.23px;
+}
+
+.logo_5 {
+    width: 81.34px;
+    height: 101.13px;
+}
+
+@keyframes lightUp {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.logo.lit svg {
+    filter: drop-shadow(0 0 5px #FFB042);
+}

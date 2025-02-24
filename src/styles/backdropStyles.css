@@ -1,0 +1,28 @@
+.backdropImage {
+    position: fixed;  /* Ensures it stays in place */
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: -1; /* Keeps the background behind all content */
+}
+
+.backdropImage::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/images/backdrop.png'); /* Ensure the path is correct */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.52;
+    mix-blend-mode: plus-lighter;
+    
+    /* Background Effects */
+    filter: blur(6px)
+            brightness(1.3)  /* Increases exposure */
+            sepia(0.1)       
+            hue-rotate(-10deg) 
+            drop-shadow(0 0 10px rgba(255, 255, 255, 0.1)); 
+}
