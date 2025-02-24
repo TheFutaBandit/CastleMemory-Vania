@@ -1,13 +1,13 @@
-.backdropImage {
-    position: fixed;  /* Ensures it stays in place */
+/* .backdropImage {
+    position: fixed;  
     width: 100vw;
     height: 100vh;
     left: 0;
     top: 0;
-    z-index: -1; /* Keeps the background behind all content */
-}
+    z-index: -1; 
+} */
 
-.backdropImage::before {
+.backdropImage {
     content: "";
     position: absolute;
     width: 100%;
@@ -16,7 +16,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.52;
+    opacity: 1;
     mix-blend-mode: plus-lighter;
     
     /* Background Effects */

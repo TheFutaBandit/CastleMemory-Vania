@@ -9,10 +9,11 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Backdrop />
-    <MainLogo />
-    <Instruction />
-    <GameContainer />
+    <div className = "background-container">
+      <MainLogo />
+      <Instruction />
+      <GameContainer />
+    </div>
   </StrictMode>,
 )
 
