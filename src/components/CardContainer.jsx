@@ -73,14 +73,15 @@ function LossDiv({ toggleRestart, winCondition }) {
 
         async function fetchData() {
             try {
-                const response = await fetch(
-                    `https://api.giphy.com/v1/gifs/translate?api_key=KqyyLHPW9jis442FabPsogFlhIgpUPxl&s=${winCondition ? "winner" : "loser"}`,
-                    { mode: "cors", signal }
-                );
-                const data_json = await response.json();
-                if (data_json.data && data_json.data.images) {
-                    setImgSrc(data_json.data.images.original.url);
-                }
+                // const response = await fetch(
+                //     `https://api.giphy.com/v1/gifs/translate?api_key=${process.env.API_KEY}&s=${winCondition ? "winner" : "loser"}`,
+                //     { mode: "cors", signal }
+                // );
+                // const data_json = await response.json();
+                // if (data_json.data && data_json.data.images) {
+                //     setImgSrc(data_json.data.images.original.url);
+                // }
+                setImgSrc("https://giphy.com/gifs/netflix-sigh-uh-trevor-wsZ6ysousRXKVv7oke");
             } catch (error) {
                 if (error.name !== "AbortError") {
                     console.error("Fetch error:", error);
@@ -98,7 +99,8 @@ function LossDiv({ toggleRestart, winCondition }) {
     return (
         <div className="Loss">
             <h1>{winCondition ? "You have won. Click to restart!" : "You have lost. Click to restart!"}</h1>
-            <img src={imgSrc} class ="gif" alt="GIF" />
+            {/* <img src={imgSrc} className ="gif" alt="GIF" /> */}
+            <h2>pretend its a gif here, I don't know why I can't put my API_KEY in the .env</h2>
             <button onClick={toggleRestart}>Restart</button>
         </div>
     );
